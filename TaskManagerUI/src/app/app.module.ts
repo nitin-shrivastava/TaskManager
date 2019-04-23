@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {RouterModule} from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { AddComponent } from './ui/add/add.component';
@@ -14,7 +15,11 @@ import { UpdateComponent } from './ui/update/update.component';
     UpdateComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([{ path: 'add', component: AddComponent },
+    { path: 'view', component: ViewComponent },
+    { path: '',redirectTo:'add', pathMatch:'full' }
+  ])
   ],
   providers: [],
   bootstrap: [AppComponent]
