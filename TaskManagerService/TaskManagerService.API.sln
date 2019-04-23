@@ -1,19 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerService.API", "TaskManagerService.API\TaskManagerService.API.csproj", "{C27C7341-62A4-496D-BBA8-640D8DF46332}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerService.Tests", "TaskManagerService.Tests\TaskManagerService.Tests.csproj", "{BE10C2AA-7227-4666-A783-0470DA402761}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerService.Entities", "TaskManagerService.Entities\TaskManagerService.Entities.csproj", "{403AC251-74D4-4F40-98B9-926C207F6803}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerService.BusinessLayer", "TaskManagerService.BusinessLayer\TaskManagerService.BusinessLayer.csproj", "{3B8ECD0E-0861-46D1-BD9B-D51FF3A4C557}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerService.DataLayer", "TaskManagerService.DataLayer\TaskManagerService.DataLayer.csproj", "{7EEA783D-7F5B-4121-9AAE-40CC2FB70F68}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerService.PerformanceTest", "TaskManagerService.PerformanceTest\TaskManagerService.PerformanceTest.csproj", "{E6B8B2E9-EDDD-4B05-8E72-C1C3911EC414}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,22 +21,6 @@ Global
 		{BE10C2AA-7227-4666-A783-0470DA402761}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE10C2AA-7227-4666-A783-0470DA402761}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE10C2AA-7227-4666-A783-0470DA402761}.Release|Any CPU.Build.0 = Release|Any CPU
-		{403AC251-74D4-4F40-98B9-926C207F6803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{403AC251-74D4-4F40-98B9-926C207F6803}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{403AC251-74D4-4F40-98B9-926C207F6803}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{403AC251-74D4-4F40-98B9-926C207F6803}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B8ECD0E-0861-46D1-BD9B-D51FF3A4C557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B8ECD0E-0861-46D1-BD9B-D51FF3A4C557}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B8ECD0E-0861-46D1-BD9B-D51FF3A4C557}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B8ECD0E-0861-46D1-BD9B-D51FF3A4C557}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7EEA783D-7F5B-4121-9AAE-40CC2FB70F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EEA783D-7F5B-4121-9AAE-40CC2FB70F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EEA783D-7F5B-4121-9AAE-40CC2FB70F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EEA783D-7F5B-4121-9AAE-40CC2FB70F68}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6B8B2E9-EDDD-4B05-8E72-C1C3911EC414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6B8B2E9-EDDD-4B05-8E72-C1C3911EC414}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6B8B2E9-EDDD-4B05-8E72-C1C3911EC414}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6B8B2E9-EDDD-4B05-8E72-C1C3911EC414}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
