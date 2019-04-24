@@ -4,11 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TaskManagerService.BusinessLayer;
+using TaskManagerService.Entities;
 
 namespace TaskManagerService.API.Controllers
 {
-    public class ValuesController : ApiController
+    public class TaskOperationController : ApiController, IDisposable
     {
+
         // GET api/values
         public IEnumerable<string> Get()
         {
@@ -24,6 +27,24 @@ namespace TaskManagerService.API.Controllers
         // POST api/values
         public void Post([FromBody]string value)
         {
+            try
+            {
+                using (var task = new TaskManagerOperations())
+                {
+                    var entity = new UserTask();
+                    entity.TaskDetail = value;
+                    var opSuccess = task.InsertTask(entity);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally {
+
+            }
         }
 
         // PUT api/values/5

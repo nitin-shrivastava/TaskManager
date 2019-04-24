@@ -156,7 +156,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\TaskOperationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -245,6 +245,16 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManagerService.BusinessLayer\TaskManagerService.BusinessLayer.csproj">
+      <Project>{D2574D23-456A-4BD7-B9F3-616E661C5084}</Project>
+      <Name>TaskManagerService.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskManagerService.Entities\TaskManagerService.Entities.csproj">
+      <Project>{B5FEB1B3-6CD7-4EB4-955B-19F2CDAA5652}</Project>
+      <Name>TaskManagerService.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
