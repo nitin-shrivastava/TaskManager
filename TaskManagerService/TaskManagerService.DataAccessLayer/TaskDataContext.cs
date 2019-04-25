@@ -18,9 +18,8 @@ namespace TaskManagerService.DataAccessLayer
         public DbSet<UserTask> UserTasks { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<UserTask>().HasKey<int>(x => x.Task_ID);
             modelBuilder.Entity<UserTask>()
-                .HasKey(c => c.Task_ID)
                 .HasOptional(m => m.Parent)
                 .WithMany()
                 .HasForeignKey(m => m.ParentTask_ID);
