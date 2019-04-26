@@ -1,16 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="card">
-  <div class="card-header">
-    <h1>
-      {{ title }}!
-    </h1>
-  </div>
-  <div class="card-body">
-    <div class="form-group row">
-      <button class="btn btn-link" [routerLink]="['/add']" routerLinkActive="router-link-active">Add
-        Task</button>
-      <button class="btn btn-link" [routerLink]="['/view']">View Task</button>
+
+
+<nav class="navbar navbar-dark bg-secondary">
+   <a class="navbar-brand" href="#">Task Manager</a>
+</nav>
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <h1>
+        {{ title }}
+      </h1>
     </div>
-    <router-outlet></router-outlet>
+    <div class="card-body">
+      <div class="form-group row">
+        <button class="btn btn-link" [routerLink]="['/add']" routerLinkActive="router-link-active">Add
+          Task</button>
+        <button class="btn btn-link" [routerLink]="['/view']">View Task</button>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
