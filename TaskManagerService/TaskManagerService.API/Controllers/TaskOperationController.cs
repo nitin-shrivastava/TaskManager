@@ -25,14 +25,19 @@ namespace TaskManagerService.API.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]UserTask record)
         {
             try
             {
                 using (var task = new TaskManagerOperations())
                 {
                     var entity = new UserTask();
-                    entity.TaskDetail = value;
+                    entity.TaskDetail = record.TaskDetail;
+                    entity.StartDate = record.StartDate;
+                    entity.EndDate = record.EndDate;
+                    entity.Priority = record.Priority;
+                    entity.Status = record.Status;
+                    entity.ParentTask_ID = record.ParentTask_ID;
                     var opSuccess = task.InsertTask(entity);
                 }
 

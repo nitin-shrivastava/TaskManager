@@ -32,10 +32,10 @@ namespace TaskManagerService.DataAccessLayer
                 context.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex.InnerException;
             }
         }
 
