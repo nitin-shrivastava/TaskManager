@@ -36,26 +36,27 @@
     </div>
     <div class="col-md-3">
       <div class="form-group">
-        <label for="startDate" class="col-sm-8 col-form-label">Start Date</label>
-        <div class="col-sm-4">
+        <label for="startDate" class="col-sm-6 col-form-label">Start Date</label>
+        <div class="col-sm-6">
           <input type="text" class="col-md-12" id="startDate" placeholder="Start Date" />
         </div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="form-group">
-        <label for="endDate" class="col-sm-4 col-form-label">End Date</label>
-        <div class="col-sm-8">
+        <label for="endDate" class="col-sm-6 col-form-label">End Date</label>
+        <div class="col-sm-6 ">
           <input type="text" class="col-md-12" id="endDate" placeholder="End Date" />
         </div>
       </div>
     </div>
   </div>
 </form>
-<table class="table">
+<table class="table" *ngIf='tasks && tasks.length'>
   <thead>
     <tr>
-
+      <th class="d-none">
+      </th>
       <th>
         Task
       </th>
@@ -71,11 +72,36 @@
       <th>
         End
       </th>
+      <th class="d-none">
+      </th>
+      <th>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-
+    <tr *ngFor='let task of tasks'>
+      <td class="d-none">{{task.TaskId}}</td>
+      <td>
+        <div class="card" style="width: 12rem;background:lightgrey;">
+          <div class="card-body">{{task.Task}}</div>
+        </div>
+      </td>
+      <td><span class="d-none">{{task.ParentTaskId}}</span>
+        <div class="card" style="width: 12rem;background:lightgrey;">
+            <div class="card-body">{{task.ParentTask}}</div>
+          </div>
+      </td>
+      <td>{{task.Priority}}</td>
+      <td>{{task.StartDate | date:'shortDate'}}</td>
+      <td>{{task.EndDate | date:'shortDate'}}</td>
+      <td class="d-none">{{task.Status}}</td>
+      <td>
+        <div class="form-group">
+          <button class="btn btn-secondary btn-sm">Edit</button> |
+          <button class="btn btn-secondary btn-sm">End Task</button> |
+          <button class="btn btn-warning btn-sm">Delete</button>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>

@@ -7,6 +7,7 @@ import { AddComponent } from './ui/add/add.component';
 import { ViewComponent } from './ui/view/view.component';
 import { UpdateComponent } from './ui/update/update.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

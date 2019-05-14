@@ -5,13 +5,14 @@
       {{ title }}!
     </h1>
   </div>
-  <div class="card-body">
+  <div class="card-body container">
     <div class="form-group row">
       <button class="btn btn-link" [routerLink]="['/add']" routerLinkActive="router-link-active">Add
         Task</button>
       <button class="btn btn-link" [routerLink]="['/view']">View Task</button>
     </div>
-    <div class="container">
-    <router-outlet></router-outlet></div>
+    <div class="">
+    <router-outlet></router-outlet>
+  </div>
   </div>
 </div>
