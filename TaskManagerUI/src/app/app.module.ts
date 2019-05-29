@@ -18,7 +18,7 @@ import { UpdateComponent } from './ui/update/update.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot([{ path: 'add', component: AddComponent },
-    { path: 'view', component: ViewComponent },
+    { path: 'view', component: ViewComponent ,children:[{ path: ':id/update', component: UpdateComponent }]},
     { path: '',redirectTo:'add', pathMatch:'full' }
   ])
   ],
