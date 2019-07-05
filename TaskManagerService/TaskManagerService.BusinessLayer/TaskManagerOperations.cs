@@ -15,6 +15,36 @@ namespace TaskManagerService.BusinessLayer
         {
             GC.SuppressFinalize(this);
         }
+        public List<UserTask> GetTaskDetails()
+        {
+            try
+            {
+                using (var repository = new TaskRepository())
+                {
+                    var taskdetails = repository.GetTaskDetails();
+                    return taskdetails;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public UserTask GetTaskDetailsById(int id)
+        {
+            try
+            {
+                using (var repository = new TaskRepository())
+                {
+                    return repository.GetTaskDetailsById(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool InsertTask(UserTask taskEntity)
         {
             try

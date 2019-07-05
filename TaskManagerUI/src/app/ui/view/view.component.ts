@@ -46,9 +46,14 @@ export class ViewComponent implements OnInit {
       Task: 'This is my second task'
     }
   ];
-  deleteEmployee(index) {
-    var filtered = this.tasks.filter(function(item) { 
-      return item.TaskId === index;  
+  deleteEmployee(taskid) {
+    var taskList=this.tasks;
+    var filtered = this.tasks.filter(function(item,index) { 
+       
+      if(item.TaskId === taskid){
+        taskList.splice(index,1);
+      }  
+      return; 
    });
    // this.tasks.filter({TaskId:index});
   }

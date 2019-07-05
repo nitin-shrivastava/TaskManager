@@ -13,15 +13,37 @@ namespace TaskManagerService.API.Controllers
     {
 
         // GET api/values
-        public IEnumerable<string> Get()
+        public List<UserTask> GetTaskDetails()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                using (var task = new TaskManagerOperations())
+                {
+                    return task.GetTaskDetails();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // GET api/values/5
-        public string Get(int id)
+        //[Route("GetTaskDetailsById/{id}")]
+
+        public UserTask GetTaskDetailsById(int id)
         {
-            return "value";
+            try
+            {
+                using (var task = new TaskManagerOperations())
+                {
+                    return task.GetTaskDetailsById(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // POST api/values
@@ -44,10 +66,10 @@ namespace TaskManagerService.API.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
-            finally {
+            finally
+            {
 
             }
         }
