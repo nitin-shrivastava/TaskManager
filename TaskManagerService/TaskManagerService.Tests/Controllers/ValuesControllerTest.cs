@@ -7,6 +7,7 @@ using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TaskManagerService.API;
 using TaskManagerService.API.Controllers;
+using TaskManagerService.Entities;
 
 namespace TaskManagerService.Tests.Controllers
 {
@@ -20,7 +21,7 @@ namespace TaskManagerService.Tests.Controllers
             TaskOperationController controller = new TaskOperationController();
 
             // Act
-            IEnumerable<string> result = controller.Get();
+            IEnumerable<UserTask> result = controller.GetTaskDetails();
 
             // Assert
             Assert.IsNotNull(result);
@@ -36,7 +37,7 @@ namespace TaskManagerService.Tests.Controllers
             TaskOperationController controller = new TaskOperationController();
 
             // Act
-            string result = controller.Get(5);
+            UserTask result = controller.GetTaskDetailsById(5);
 
             // Assert
             Assert.AreEqual("value", result);
@@ -49,7 +50,7 @@ namespace TaskManagerService.Tests.Controllers
             TaskOperationController controller = new TaskOperationController();
 
             // Act
-            controller.Post("value");
+            controller.Post(new UserTask());
 
             // Assert
         }
