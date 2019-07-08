@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'TaskManager-VM'
+  vmImage: 'window-latest'
 
 variables:
   solution: '**/*.sln'
