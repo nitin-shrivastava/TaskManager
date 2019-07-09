@@ -13,13 +13,14 @@ namespace TaskManagerService.API.Controllers
     {
 
         // GET api/values
-        public List<UserTask> GetTaskDetails()
+        public HttpResponseMessage GetTaskDetails()
         {
             try
             {
                 using (var task = new TaskManagerOperations())
                 {
-                    return task.GetTaskDetails();
+                    var abc = task.GetTaskDetails();
+                    return Request.CreateResponse(HttpStatusCode.OK, abc);
                 }
             }
             catch (Exception ex)
@@ -31,7 +32,7 @@ namespace TaskManagerService.API.Controllers
         // GET api/values/5
         //[Route("GetTaskDetailsById/{id}")]
 
-        public UserTask GetTaskDetailsById(int id)
+        public UserTaskModel GetTaskDetailsById(int id)
         {
             try
             {
@@ -47,7 +48,7 @@ namespace TaskManagerService.API.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]UserTask record)
+        public void Post([FromBody]UserTaskModel record)
         {
             try
             {
@@ -80,8 +81,14 @@ namespace TaskManagerService.API.Controllers
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        [HttpGet]
+        [Route("api/delete/{id}")]
+        
+        public HttpResponseMessage Delete(int id)
         {
+            var task = new TaskManagerOperations();
+            var result = task.DeleteTask(id);
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
     }
 }

@@ -16,7 +16,18 @@ namespace TaskManagerService.DataAccessLayer
         }
         public bool DeleteById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+               var element= context.UserTasks.Where(x=>x.Task_ID==id).FirstOrDefault();
+                context.UserTasks.Remove(element);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex.InnerException;
+            }
         }
 
         public void Dispose()
@@ -38,15 +49,15 @@ namespace TaskManagerService.DataAccessLayer
                 throw ex.InnerException;
             }
         }
-        public List<UserTask> GetTaskDetails()
+        public List<UserTaskModel> GetTaskDetails()
         {
             try
             {
-                List<UserTask> taskModelList = new List<UserTask>();
+                List<UserTaskModel> taskModelList = new List<UserTaskModel>();
                 var taskList = context.UserTasks.ToList();
                 foreach (var taskItem in taskList)
                 {
-                    var UTM = new UserTask()
+                    var UTM = new UserTaskModel()
                     {
                         ParentTask_ID = taskItem.ParentTask_ID,
                         TaskDetail = taskItem.TaskDetail,
@@ -66,13 +77,13 @@ namespace TaskManagerService.DataAccessLayer
             }
         }
 
-        public UserTask GetTaskDetailsById(int id)
+        public UserTaskModel GetTaskDetailsById(int id)
         {
             var taskModel = (from c in context.UserTasks
                              where c.Task_ID == id
                              select c).FirstOrDefault();
 
-            var UTM = new UserTask()
+            var UTM = new UserTaskModel()
             {
                 ParentTask_ID = taskModel.ParentTask_ID,
                 TaskDetail = taskModel.TaskDetail,

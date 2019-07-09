@@ -15,29 +15,26 @@ namespace TaskManagerService.BusinessLayer
         {
             GC.SuppressFinalize(this);
         }
-        public List<UserTask> GetTaskDetails()
+        public List<UserTaskModel> GetTaskDetails()
         {
             try
             {
-                using (var repository = new TaskRepository())
-                {
-                    var taskdetails = repository.GetTaskDetails();
-                    return taskdetails;
-                }
+                List<UserTaskModel> taskdetails = null;
+                var repository = new TaskRepository();
+                taskdetails = repository.GetTaskDetails();
+                return taskdetails;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public UserTask GetTaskDetailsById(int id)
+        public UserTaskModel GetTaskDetailsById(int id)
         {
             try
             {
-                using (var repository = new TaskRepository())
-                {
-                    return repository.GetTaskDetailsById(id);
-                }
+                var repository = new TaskRepository();
+                return repository.GetTaskDetailsById(id);
             }
             catch (Exception ex)
             {
@@ -50,18 +47,22 @@ namespace TaskManagerService.BusinessLayer
             try
             {
                 bool opCompleted;
-                using (var repository = new TaskRepository())
-                {
-                    opCompleted = repository.Insert(taskEntity);
-                }
+                var repository = new TaskRepository();
+                opCompleted = repository.Insert(taskEntity);
                 return opCompleted;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 
+        }
+        public bool DeleteTask(int id)
+        {
+            bool opCompleted;
+            var repository = new TaskRepository();
+            opCompleted = repository.DeleteById(id);
+            return opCompleted;
         }
     }
 }
