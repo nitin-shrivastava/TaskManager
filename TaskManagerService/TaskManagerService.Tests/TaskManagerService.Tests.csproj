@@ -122,6 +122,10 @@
       <Project>{C27C7341-62A4-496D-BBA8-640D8DF46332}</Project>
       <Name>TaskManagerService.API</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TaskManagerService.Entities\TaskManagerService.Entities.csproj">
+      <Project>{B5FEB1B3-6CD7-4EB4-955B-19F2CDAA5652}</Project>
+      <Name>TaskManagerService.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
