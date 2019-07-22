@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
+
 import { ITask } from 'src/app/model/ITask';
 import * as moment from 'moment';
+
+import { SharedService }    from 'src/app/services/shared.service';
 
 @Component({
   templateUrl: './view.component.html',
@@ -8,11 +11,15 @@ import * as moment from 'moment';
 })
 export class ViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private taskService: SharedService) { }
   @Input() editView;
   //@ViewChild(UpdateComponent) child;
-
+  errorMessage:string;
   ngOnInit() {
+    this.taskService.getAllTasks().subscribe(
+      tasks=>this.tasks=tasks,
+      error=>this.errorMessage=<any>error
+      );
     // add this 2 of 4
     //this.editView = new UpdateComponent();
   }

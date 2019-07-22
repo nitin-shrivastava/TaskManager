@@ -1,25 +1,41 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ITask } from '../model/ITask';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError, tap } from 'rxjs/operators';
 import { Task } from '../model/task';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
-  private tasksUrl = 'api/tasks';
+  private tasksUrl = 'https://taskmanagerserviceapi20190703040240.azurewebsites.net/api/taskoperation';
   constructor(private http: HttpClient) { }
-  getProducts(): Observable<ITask[]> {
-    // return this.http.get<ITask[]>(this.productsUrl)
-    //   .pipe(
-    //     tap(data => console.log(JSON.stringify(data))),
-    //     catchError(this.handleError)
-    //   );
+  getAllTasks(): Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.tasksUrl)
+      .pipe(
+        tap(data => console.log(JSON.stringify(data))),
+        retry(1),
+        catchError(this.handleError)
+      );
     return;
   }
+  handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
 
-  getTask(id: number): Observable<Task> {
+
+
+  getTaskById(id: number): Observable<Task> {
     if (id === 0) {
       return ;
     }
