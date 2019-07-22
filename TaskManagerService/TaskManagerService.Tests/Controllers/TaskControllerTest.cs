@@ -1,33 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TaskManagerService.API;
 using TaskManagerService.API.Controllers;
+using TaskManagerService.BusinessLayer;
 using TaskManagerService.Entities;
 
 namespace TaskManagerService.Tests.Controllers
 {
     [TestClass]
-    public class ValuesControllerTest
+    public class TaskControllerTest
     {
+        private void MockHttpContext()
+        {
+            HttpContext.Current = new HttpContext(new HttpRequest(string.Empty, "http://tempuri.org", string.Empty),
+                                                  new HttpResponse(new StringWriter(CultureInfo.InvariantCulture)));
+           
+        }
         [TestMethod]
         public void Get()
         {
             // Arrange
-            TaskOperationController controller = new TaskOperationController();
+            TaskManagerOperations controller = new TaskManagerOperations();
+           
+                // Act
+                var result = controller.GetTaskDetails();
 
-            // Act
-           // IEnumerable<UserTask> result = controller.GetTaskDetails();
+             
+            Assert.IsNotNull(result.Count());
+            Assert.Equals(2, result.Count());
 
-            // Assert
-            //Assert.IsNotNull(result);
-            //Assert.AreEqual(2, result.Count());
-            //Assert.AreEqual("value1", result.ElementAt(0));
-            //Assert.AreEqual("value2", result.ElementAt(1));
+
         }
 
         [TestMethod]
@@ -74,7 +84,7 @@ namespace TaskManagerService.Tests.Controllers
             TaskOperationController controller = new TaskOperationController();
 
             // Act
-            controller.Delete(5);
+           // controller.Delete(5);
 
             // Assert
         }

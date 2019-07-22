@@ -14,12 +14,19 @@ describe('ViewComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewComponent);
-    component = fixture.componentInstance;
+   const fixture = TestBed.createComponent(ViewComponent);
+    const app = fixture.debugElement.componentInstance;   
     fixture.detectChanges();
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  function setup() {
+    const fixture = TestBed.createComponent(ViewComponent);
+    const app = fixture.debugElement.componentInstance;   
+    return { fixture, app };
+  }
+ 
+  
+    it('should create the view component ', () => {
+      const { app } = setup();
+      expect(app).toBeTruthy();
+    });
 });

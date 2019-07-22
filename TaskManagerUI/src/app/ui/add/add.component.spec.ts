@@ -18,8 +18,21 @@ describe('AddComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  
+  function setup() {
+    const fixture = TestBed.createComponent(AddComponent);
+    const app = fixture.debugElement.componentInstance;
+   
+    return { fixture, app };
+  }
+  it('should have page title', () => {
+    expect(component.pageTitle).toEqual("Add Task");
   });
+
+    
+  
+    it('should create the add component', () => {
+      const { app } = setup();
+      expect(app).toBeTruthy();
+    });
 });
