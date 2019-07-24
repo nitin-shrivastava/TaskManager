@@ -17,7 +17,10 @@ export class ViewComponent implements OnInit {
   errorMessage:string;
   ngOnInit() {
     this.taskService.getAllTasks().subscribe(
-      tasks=>this.tasks=tasks,
+      tasks=>{
+        this.tasks=tasks
+        
+      },
       error=>this.errorMessage=<any>error
       );
     // add this 2 of 4
@@ -31,28 +34,28 @@ export class ViewComponent implements OnInit {
   }
   momentInstance = moment();
 
-   tasks: ITask[] = [
-    {
-      TaskId: 1,
-      ParentTaskId: 1,
-      ParentTask: 'Parent task 1',
-      EndDate: new Date('12/04/1996'),
-      Priority: 5,
-      StartDate: new Date('12/04/1996'),
-      Status: 'open',
-      Task: 'This is my sample task'
-    },
-    {
-      TaskId: 2,
-      ParentTaskId: 1,
-      ParentTask: 'parent task 2',
-      EndDate: new Date('12/04/1996'),
-      Priority: 6,
-      StartDate: new Date('11/04/1996'),
-      Status: 'open',
-      Task: 'This is my second task'
-    }
-  ];
+   tasks: ITask[] ;
+  //   {
+  //     TaskId: 1,
+  //     ParentTaskId: 1,
+  //     ParentTask: 'Parent task 1',
+  //     EndDate: new Date('12/04/1996'),
+  //     Priority: 5,
+  //     StartDate: new Date('12/04/1996'),
+  //     Status: 'open',
+  //     Task: 'This is my sample task'
+  //   },
+  //   {
+  //     TaskId: 2,
+  //     ParentTaskId: 1,
+  //     ParentTask: 'parent task 2',
+  //     EndDate: new Date('12/04/1996'),
+  //     Priority: 6,
+  //     StartDate: new Date('11/04/1996'),
+  //     Status: 'open',
+  //     Task: 'This is my second task'
+  //   }
+  // ];
   deleteEmployee(taskid) {
     var taskList=this.tasks;
     var filtered = this.tasks.filter(function(item,index) { 
