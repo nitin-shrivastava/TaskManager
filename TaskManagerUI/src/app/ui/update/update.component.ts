@@ -13,6 +13,7 @@ export class UpdateComponent implements OnInit {
   task:any;
   
   constructor( private route: ActivatedRoute) {    
+    console.log(this.route.snapshot.paramMap.get('Task_ID'));
   }
 
 display='none'; 

@@ -27,7 +27,9 @@ import { UsersComponent } from './ui/users/users.component';
     { path: 'project', component: ProjectComponent },
     { path: 'users', component: UsersComponent },
     { path: 'add', component: AddComponent },
-    { path: 'view', component: ViewComponent, children:[{ path: ':id/update', component: UpdateComponent }]},
+    { path: 'view', component: ViewComponent},
+    { path: 'view/:id', component: UpdateComponent},
+     //children:[{ path: ':id/update', component: UpdateComponent }]},
     { path: '',redirectTo:'add', pathMatch:'full' }
   ])
   ],
