@@ -17,8 +17,7 @@ export class SharedService {
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
         catchError(this.handleError)
-      );
-    return;
+      );   
   }
   handleError(error) {
     let errorMessage = '';
@@ -35,15 +34,21 @@ export class SharedService {
 
 
 
-  getTaskById(id: number): Observable<Task> {
-    if (id === 0) {
-      return ;
-    }
-    const url = `${this.tasksUrl}/${id}`;
-    // return this.http.get<Product>(url)
-    //   .pipe(
-    //     tap(data => console.log('getProduct: ' + JSON.stringify(data))),
-    //     catchError(this.handleError)
-    //   );
+  getTaskById(id: number):  Observable<ITask[]> {
+    return this.http.get<ITask[]>(this.tasksUrl+'/'+id)
+      .pipe(
+        tap(data => console.log(JSON.stringify(data))),
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+  deleteTask(id:number):Observable<ITask[]>{
+
+    return this.http.get<ITask[]>(this.tasksUrl+'/'+id)
+    .pipe(
+      tap(data => console.log(JSON.stringify(data))),
+      retry(1),
+      catchError(this.handleError)
+    );
   }
 }

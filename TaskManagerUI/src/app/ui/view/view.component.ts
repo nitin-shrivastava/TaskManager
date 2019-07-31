@@ -18,8 +18,7 @@ export class ViewComponent implements OnInit {
   ngOnInit() {
     this.taskService.getAllTasks().subscribe(
       tasks=>{
-        this.tasks=tasks
-        
+        this.tasks=tasks        
       },
       error=>this.errorMessage=<any>error
       );
