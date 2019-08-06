@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   templateUrl: './add.component.html',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
  pageTitle:string="Add Task";
-  constructor() { }
+ errorMessage:string='';
+ item:any;
+  constructor(private addTaskService: SharedService) { }
 
   ngOnInit() {
 
   }
-
+  addNewTask(formData){
+    this.addTaskService.AddNewTask(formData.value).subscribe(
+      task=>{this.item=task},
+      error => this.errorMessage = <any>error)
+  }
+  
 }

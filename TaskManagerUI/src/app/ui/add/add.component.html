@@ -1,22 +1,22 @@
-<form>
+<form #addtaskform="ngForm" (ngSubmit)="addNewTask(addtaskform)">
   <div class="form-group row">
     <label for="project" class="col-sm-2 col-form-label">Project:</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="projectId" placeholder="project name" />
+      <input type="text" class="form-control" id="projectId" placeholder="project name" name="projectName" ngModel required/>
     </div>
     <button class="btn btn-primary col-sm-2">Search</button>
   </div>
   <div class="form-group row">
     <label for="taskName" class="col-sm-2 col-form-label">Task:</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="taskName" placeholder="task name" />
+      <input type="text" class="form-control" id="taskName" placeholder="task name" name="taskDetail" ngModel required/>
     </div>
   </div>
   <div class="form-group row">
       <div class="col-sm-2">
       </div>
   <div class="form-check col-sm-10">
-      <input class="form-check-input" type="checkbox" value="" id="setParentTask">
+      <input class="form-check-input" type="checkbox" value="" id="setParentTask" name="chkIsParent" ngModel required>
       <label class="form-check-label" for="setParentTask">
           Parent Task
       </label>
@@ -26,31 +26,31 @@
     <label class="col-sm-2 col-form-label">Priority</label>
 
     <div class="col-sm-10">
-      <input type="range" class="custom-range" max="30" min="0" id="formControlRange"></div>
+      <input type="range" class="custom-range" max="30" min="0" id="formControlRange" name="priority" ngModel required></div>
 
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Parent Task</label>
     <div class="col-sm-8 ">
-      <input type="text" class="form-control" id="parentTask" placeholder="parent task" />
+      <input type="text" class="form-control" id="parentTask" placeholder="parent task" name="parentTask" ngModel required/>
     </div>
     <button class="btn btn-secondary col-sm-2 btn-sm" type="button">Search</button>
   </div>
   <div class="form-group row">
     <label for="startDate" class="col-sm-2 col-form-label">Start Date</label>
     <div class="col-sm-4">
-      <input type="text" id="startDate" class="form-control" placeholder="start date" />
+      <input type="date" id="startDate" class="form-control" placeholder="start date" name="startDate" ngModel required />
     </div>
 
     <label for="endDate" class="col-sm-2 col-form-label">End Date</label>
     <div class="col-sm-4">
-      <input type="text" id="endDate" class="form-control" placeholder="end date" />
+      <input type="date" id="endDate" class="form-control" placeholder="end date" name="endDate" ngModel required/>
     </div>
   </div>
   <div class="form-group row">
       <label class="col-sm-2 col-form-label">User: </label>
       <div class="col-sm-8 ">
-        <input type="text" class="form-control" id="parentTask" placeholder="user" />
+        <input type="text" class="form-control" id="parentTask" placeholder="user" name="username" ngModel required/>
       </div>
       <button class="btn btn-secondary col-sm-2 btn-sm" type="button">Search</button>
     </div>
