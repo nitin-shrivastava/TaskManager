@@ -13,12 +13,13 @@ export class ViewComponent implements OnInit {
 
   constructor(private taskService: SharedService) { }
   @Input() editView;
-  //@ViewChild(UpdateComponent) child;
+  tasks: ITask[] ;
+
   errorMessage:string;
   ngOnInit() {
     this.taskService.getAllTasks().subscribe(
       tasks=>{
-        this.tasks=tasks        
+        this.tasks=tasks;   
       },
       error=>this.errorMessage=<any>error
       );
@@ -33,7 +34,7 @@ export class ViewComponent implements OnInit {
   }
   momentInstance = moment();
 
-   tasks: ITask[] ;
+  
   //   {
   //     TaskId: 1,
   //     ParentTaskId: 1,

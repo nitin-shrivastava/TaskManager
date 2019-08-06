@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router'
-
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AddComponent } from './ui/add/add.component';
 import { ViewComponent } from './ui/view/view.component';
@@ -22,7 +23,9 @@ import { UsersComponent } from './ui/users/users.component';
     UsersComponent    
   ],
   imports: [
-    BrowserModule,HttpClientModule,
+    BrowserModule,
+    HttpClientModule,CommonModule,
+    FormsModule,
     RouterModule.forRoot([
     { path: 'project', component: ProjectComponent },
     { path: 'users', component: UsersComponent },

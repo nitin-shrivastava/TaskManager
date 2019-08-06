@@ -19,6 +19,38 @@ export class SharedService {
         catchError(this.handleError)
       );   
   }
+  getAllProjects(): Observable<ITask[]> {
+    return this.http.get<ITask[]>("http://localhost:52240/api/project")
+      .pipe(
+        tap(data => console.log(JSON.stringify(data))),
+        retry(1),
+        catchError(this.handleError)
+      );   
+  }
+  AddProject(formData): Observable<ITask[]> {
+    return this.http.post<any[]>("http://localhost:52240/api/project",formData)
+      .pipe(
+        tap(data => console.log(JSON.stringify(data))),
+        retry(1),
+        catchError(this.handleError)
+      );   
+  }
+  getAllUsers(): Observable<ITask[]> {
+    return this.http.get<any[]>("http://localhost:52240/api/users")
+      .pipe(
+        tap(data => console.log(JSON.stringify(data))),
+        retry(1),
+        catchError(this.handleError)
+      );   
+  }
+  AddUser(formData): Observable<ITask[]> {
+    return this.http.post<any[]>("http://localhost:52240/api/users",formData)
+      .pipe(
+        tap(data => console.log(JSON.stringify(data))),
+        retry(1),
+        catchError(this.handleError)
+      );   
+  }
   handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-users',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private userService:SharedService) { }
+  users:any[];
+  errorMessage: string;
   ngOnInit() {
+    this.fetchUsers();
   }
+  fetchUsers() {
+    this.userService.getAllUsers().subscribe(
+      UserList => {
+        this.users = UserList;
+      },
+      error => this.errorMessage = <any>error
+    );
+  }
+  addUserDetails(formData){
+console.log(formData.value);
 
+  }
 }

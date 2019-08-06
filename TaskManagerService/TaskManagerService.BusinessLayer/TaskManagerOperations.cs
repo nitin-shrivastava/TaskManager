@@ -42,7 +42,7 @@ namespace TaskManagerService.BusinessLayer
             }
         }
 
-        public bool InsertTask(UserTask taskEntity)
+        public bool InsertTask(UserTaskModel taskEntity)
         {
             try
             {

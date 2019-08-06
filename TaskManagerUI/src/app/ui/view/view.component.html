@@ -55,6 +55,7 @@
 </form>
 <form class="form-group">
   <div class="form-row form-inline">
+
       <div class="col-md-6">
           <div class="row">
             <div class="col-md-3">
@@ -64,7 +65,8 @@
                 <input type="text" class="form-control" id="project_Name" placeholder="Project" />
             </div>
             <div class="col-md-3">
-                <button class="btn btn-secondary btn-sm  mr-1" type="button" value="" >Search</button>
+               
+                <button class="btn btn-secondary btn-sm  mr-1" type="button" value="Start Date" >Search</button>
             </div>
           </div>
         </div>
@@ -72,6 +74,7 @@
       <div class="form-inline ">
         <label for="parenttask_Name" class="col-md-2 col-form-label">Sort By:</label>
         <div class="form-group">
+
           <div class="">
             <button class="btn btn-secondary btn-sm  mr-1" type="button" value="Start Date" >Start Date</button>
           </div>
@@ -133,7 +136,7 @@
       </td>
       <td><span class="d-none">{{task.ParentTask_ID}}</span>
         <div class="card" style="width: 12rem;background:lightgrey;">
-          <div class="card-body">{{task.Parent}}</div>
+          <div class="card-body">{{task.ParentTaskDetail}}</div>
         </div>
       </td>
       <td>{{task.Priority}}</td>

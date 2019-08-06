@@ -15,14 +15,37 @@ namespace TaskManagerService.DataAccessLayer
 
             Database.SetInitializer<TaskDataContext>(new TaskInitializer());
         }
+
+        public DbSet<Projects> Projects { get; set; }
         public DbSet<UserTask> UserTasks { get; set; }
+        public DbSet<Users> Users { get; set; }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserTask>().HasKey<int>(x => x.Task_ID);
+           
+            modelBuilder.Entity<Users>().HasKey<int>(x => x.User_Id)
+                .HasOptional(x => x.Task)
+                .WithMany()
+                .HasForeignKey(m=>m.Task_Id);
+
+            modelBuilder.Entity<Users>()
+                .HasOptional(x => x.Projects)
+                .WithMany()
+                .HasForeignKey(m=>m.Project_Id);
+
+            modelBuilder.Entity<Projects>().HasKey<int>(x => x.Project_Id);
+      
             modelBuilder.Entity<UserTask>()
                 .HasOptional(m => m.Parent)
                 .WithMany()
                 .HasForeignKey(m => m.ParentTask_ID);
+
+            modelBuilder.Entity<UserTask>()
+                .HasOptional(m => m.Project)
+                .WithMany()
+                .HasForeignKey(m => m.Project_ID);
+
 
         }
     }

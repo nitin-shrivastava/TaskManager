@@ -1,28 +1,31 @@
-<form>
+<form #projectform="ngForm" (ngSubmit)="saveProjectDetails(projectform)">
   <div class="form-group row">
     <label for="project" class="col-sm-2 col-form-label">Project</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="projectId" placeholder="project name" />
+      <input type="text" class="form-control" id="projectId" placeholder="project name" name="project" ngModel
+        required />
     </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-2">
     </div>
     <div class="col-sm-4">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="setStartEndDae">
-            <label class="form-check-label" for="defaultCheck1">
-                Set Start and End Date
-            </label>
-          </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="setStartEndDate" name="formCheckbox" ngModel
+          required>
+        <label class="form-check-label" for="defaultCheck1">
+          Set Start and End Date
+        </label>
+      </div>
     </div>
     <div class="col-sm-6 row">
-        <div class="col-sm-6">
-            <input type="date" class="form-control " id="startDate" placeholder="Start Date" />
-          </div>
-          <div class="col-sm-6">
-              <input type="date" class="form-control" id="endDate" placeholder="End Date" />
-          </div>
+      <div class="col-sm-6">
+        <input type="date" class="form-control " id="startDate" placeholder="Start Date" name="startDate" ngModel
+          required />
+      </div>
+      <div class="col-sm-6">
+        <input type="date" class="form-control" id="endDate" placeholder="End Date" name="endDate" ngModel required />
+      </div>
 
 
     </div>
@@ -32,13 +35,15 @@
     <label class="col-sm-2 col-form-label">Priority</label>
 
     <div class="col-sm-10">
-      <input type="range" class="custom-range" value="5" max="30" min="0" id="formControlRange"></div>
+      <input type="range" class="custom-range" value="5" max="30" min="0" id="formControlRange" name="priority" ngModel
+        required></div>
 
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Manager</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="manager" placeholder="Enter Manager Name" />
+      <input type="text" class="form-control" id="manager" placeholder="Enter Manager Name" name="manager" ngModel
+        required />
     </div>
     <div class="col-sm-2">
       <button class="btn btn-sm btn-secondary" id="search" type="button">Search</button>
@@ -53,3 +58,107 @@
     </div>
   </div>
 </form>
+<hr />
+<div class="content"  *ngIf='projects && projects.length'>
+  <div class="row">
+    <div class="col-md-12">
+      <input type="text" class="form-control" id="search" placeholder="Search..." name="project" ngModel required />
+    </div>
+  </div>
+  <div class="row"></div>
+  <div class="row">
+    <div class="col-md-6">
+      
+    </div>
+    <div class="col-md-6">
+        <div class="form-inline ">
+            <label for="parenttask_Name" class="col-md-4 col-form-label"><strong>Sort By:</strong></label>
+            <div class="form-group">    
+              <div class="">
+                <button class="btn btn-secondary btn-sm  mr-1" type="button" value="Start Date" >Start Date</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="">
+                <button class="btn btn-secondary btn-sm  mr-1" type="button" value="End Date" >End Date</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <button class="btn btn-secondary btn-sm  mr-1" type="button" value="" >Priority</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="">
+                <button class="btn btn-secondary btn-sm  mr-1" type="button" value="" >Completed</button>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+  <br/>
+  <div class="row" style="background: lightgrey" *ngFor='let project of projects'>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4"><strong> Project:</strong></div>
+        <div class="col-md-8">
+          <label name="projectDescription">{{project.Project}}</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <strong>No. of tasks:</strong>
+        </div>
+        <div class="col-md-3">
+          <label>5</label>
+        </div>
+        <div class="col-md-3">
+          <strong>Completed:</strong>
+        </div>
+        <div class="col-md-3">
+          <label>Yes</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Start Date:</strong>
+        </div>
+        <div class="col-md-3">
+          <label>{{project.StartDate | date:'dd/MM/yyyy'}}</label>
+        </div>
+        <div class="col-md-3">
+          <strong>End Date:</strong>
+        </div>
+        <div class="col-md-3">
+          <label>{{project.EndDate | date:'dd/MM/yyyy'}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-12"><strong>Priority:</strong></div>
+      </div>
+      <div class="row">
+        <label class="col-md-12">{{project.Priority}}</label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-md active btn-primary">
+            Update
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-md btn-secondary">
+            Suspend
+          </button>
+        </div>
+      </div>
+    </div>
+    <br /> 
+  </div>
+ 
+</div>

@@ -54,14 +54,8 @@ namespace TaskManagerService.API.Controllers
             {
                 using (var task = new TaskManagerOperations())
                 {
-                    var entity = new UserTask();
-                    entity.TaskDetail = record.TaskDetail;
-                    entity.StartDate = record.StartDate;
-                    entity.EndDate = record.EndDate;
-                    entity.Priority = record.Priority;
-                    entity.Status = record.Status;
-                    entity.ParentTask_ID = record.ParentTask_ID;
-                    var opSuccess = task.InsertTask(entity);
+                   
+                    var opSuccess = task.InsertTask(record);
                 }
 
             }

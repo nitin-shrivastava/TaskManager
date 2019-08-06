@@ -50,6 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Projects.cs" />
+    <Compile Include="ProjectModel.cs" />
+    <Compile Include="Users.cs" />
+    <Compile Include="UsersModel.cs" />
     <Compile Include="UserTaskModel.cs" />
     <Compile Include="UserTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

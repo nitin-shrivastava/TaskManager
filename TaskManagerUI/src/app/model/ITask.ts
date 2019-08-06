@@ -1,7 +1,8 @@
 export interface ITask {
     TaskId:number;
     ParentTaskId:number;
-    ParentTask:string;
+    ParentTaskDetail:string;
+    ProjectID:string;
     Task:string;
     StartDate:Date;
     EndDate:Date;

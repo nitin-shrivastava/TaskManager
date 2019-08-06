@@ -35,11 +35,19 @@ namespace TaskManagerService.DataAccessLayer
             throw new NotImplementedException();
         }
 
-        public bool Insert(UserTask entity)
+        public bool Insert(UserTaskModel entity)
         {
             try
             {
-                context.UserTasks.Add(entity);
+                UserTask userTask = new UserTask();
+                userTask.ParentTask_ID = entity.ParentTask_ID;
+                userTask.Priority = entity.Priority;
+                userTask.Status = entity.Status;
+                userTask.Project_ID = entity.Project_ID;
+                userTask.TaskDetail = entity.TaskDetail;
+                userTask.StartDate = entity.StartDate;
+                userTask.EndDate = entity.EndDate;
+                context.UserTasks.Add(userTask);
                 context.SaveChanges();
                 return true;
             }
@@ -60,6 +68,7 @@ namespace TaskManagerService.DataAccessLayer
                     var UTM = new UserTaskModel()
                     {
                         ParentTask_ID = taskItem.ParentTask_ID,
+                        ParentTaskDetail=taskList.Where(x=>x.ParentTask_ID == taskItem.Task_ID).Select(x=>x.TaskDetail).FirstOrDefault()??"No parent task",
                         TaskDetail = taskItem.TaskDetail,
                         StartDate = taskItem.StartDate,
                         EndDate = taskItem.EndDate,
