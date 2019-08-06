@@ -10,6 +10,8 @@ import { Task } from '../model/task';
 })
 export class SharedService {
   private tasksUrl = 'https://taskmanagerserviceapi20190703040240.azurewebsites.net/api/taskoperation';
+  private projectUrl='https://taskmanagerserviceapi20190703040240.azurewebsites.net/api/project';
+  private usersUrl='https://taskmanagerserviceapi20190703040240.azurewebsites.net/api/users';
   constructor(private http: HttpClient) { }
   getAllTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.tasksUrl)
@@ -20,7 +22,7 @@ export class SharedService {
       );
   }
   AddNewTask(formData): Observable<ITask[]> {
-    return this.http.post<ITask[]>("http://localhost:52240/api/taskoperation",formData)
+    return this.http.post<ITask[]>(this.tasksUrl,formData)//"http://localhost:52240/api/taskoperation"
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -28,7 +30,7 @@ export class SharedService {
       );
   }
   getAllProjects(): Observable<ITask[]> {
-    return this.http.get<ITask[]>("http://localhost:52240/api/project")
+    return this.http.get<ITask[]>(this.projectUrl)//"http://localhost:52240/api/project"
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -36,7 +38,7 @@ export class SharedService {
       );
   }
   AddProject(formData): Observable<ITask[]> {
-    return this.http.post<any[]>("http://localhost:52240/api/project",formData)
+    return this.http.post<any[]>(this.projectUrl,formData)//"http://localhost:52240/api/project"
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -44,7 +46,7 @@ export class SharedService {
       );
   }
   getAllUsers(): Observable<ITask[]> {
-    return this.http.get<any[]>("http://localhost:52240/api/users")
+    return this.http.get<any[]>(this.usersUrl)//"http://localhost:52240/api/users"
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -52,7 +54,7 @@ export class SharedService {
       );
   }
   AddUser(formData): Observable<ITask[]> {
-    return this.http.post<any[]>("http://localhost:52240/api/users",formData)
+    return this.http.post<any[]>(this.usersUrl,formData)
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
