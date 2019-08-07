@@ -76,7 +76,7 @@ namespace TaskManagerService.API.Controllers
 
         // DELETE api/values/5
         [HttpGet]
-        [Route("api/delete/{id}")]
+        [Route("api/taskoperation/delete/{id}")]
         
         public HttpResponseMessage Delete(int id)
         {

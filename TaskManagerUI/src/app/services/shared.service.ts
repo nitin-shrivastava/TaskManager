@@ -9,12 +9,11 @@ import { Task } from '../model/task';
   providedIn: 'root'
 })
 export class SharedService {
-  private tasksUrl = 'https://taskmanagerserviceapi20190703040240.azurewebsites.net/api/taskoperation';
-  private projectUrl='https://taskmanagerserviceapi20190703040240.azurewebsites.net/api/project';
-  private usersUrl='https://taskmanagerserviceapi20190703040240.azurewebsites.net/api/users';
+  private hostUrl ='http://localhost:52240'; //'https://taskmanagerserviceapi20190703040240.azurewebsites.net';
+ 
   constructor(private http: HttpClient) { }
   getAllTasks(): Observable<ITask[]> {
-    return this.http.get<ITask[]>(this.tasksUrl)
+    return this.http.get<ITask[]>(this.hostUrl+'/api/taskoperation')
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -22,7 +21,7 @@ export class SharedService {
       );
   }
   AddNewTask(formData): Observable<ITask[]> {
-    return this.http.post<ITask[]>(this.tasksUrl,formData)//"http://localhost:52240/api/taskoperation"
+    return this.http.post<ITask[]>(this.hostUrl +'/api/taskoperation',formData)//"http://localhost:52240/api/taskoperation"
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -30,7 +29,7 @@ export class SharedService {
       );
   }
   getAllProjects(): Observable<ITask[]> {
-    return this.http.get<ITask[]>(this.projectUrl)//"http://localhost:52240/api/project"
+    return this.http.get<ITask[]>(this.hostUrl +'/api/project')//"http://localhost:52240/api/project"
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -38,7 +37,7 @@ export class SharedService {
       );
   }
   AddProject(formData): Observable<ITask[]> {
-    return this.http.post<any[]>(this.projectUrl,formData)//"http://localhost:52240/api/project"
+    return this.http.post<any[]>(this.hostUrl +'/api/project',formData)//"http://localhost:52240/api/project"
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -46,7 +45,7 @@ export class SharedService {
       );
   }
   getAllUsers(): Observable<ITask[]> {
-    return this.http.get<any[]>(this.usersUrl)//"http://localhost:52240/api/users"
+    return this.http.get<any[]>(this.hostUrl+'/api/users')//"http://localhost:52240/api/users"
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -54,7 +53,7 @@ export class SharedService {
       );
   }
   AddUser(formData): Observable<ITask[]> {
-    return this.http.post<any[]>(this.usersUrl,formData)
+    return this.http.post<any[]>(this.hostUrl+'/api/users',formData)
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -77,7 +76,7 @@ export class SharedService {
 
 
   getTaskById(id: number):  Observable<ITask[]> {
-    return this.http.get<ITask[]>(this.tasksUrl+'/'+id)
+    return this.http.get<ITask[]>(this.hostUrl+'/api/taskoperation/'+id)
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         retry(1),
@@ -85,8 +84,7 @@ export class SharedService {
       );
   }
   deleteTask(id:number):Observable<ITask[]>{
-
-    return this.http.get<ITask[]>(this.tasksUrl+'/'+id)
+    return this.http.get<ITask[]>(this.hostUrl+"/api/taskoperation/delete"+'/'+id)
     .pipe(
       tap(data => console.log(JSON.stringify(data))),
       retry(1),

@@ -3,7 +3,7 @@ import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angu
 import { ITask } from 'src/app/model/ITask';
 import * as moment from 'moment';
 
-import { SharedService }    from 'src/app/services/shared.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   templateUrl: './view.component.html',
@@ -13,79 +13,37 @@ export class ViewComponent implements OnInit {
 
   constructor(private taskService: SharedService) { }
   @Input() editView;
-  tasks: ITask[] ;
+  tasks: ITask[];
 
-  errorMessage:string;
+  errorMessage: string;
   ngOnInit() {
+
+    this.fetchAllTasks();
+  }
+  fetchAllTasks() {
     this.taskService.getAllTasks().subscribe(
-      tasks=>{
-        this.tasks=tasks;   
+      tasks => {
+        this.tasks = tasks;
       },
-      error=>this.errorMessage=<any>error
-      );
-    // add this 2 of 4
-    //this.editView = new UpdateComponent();
+      error => this.errorMessage = <any>error
+    );
   }
   // @Output() mySelected = new EventEmitter<string>()
   openEditPopup() {
     //this.mySelected.emit("open");
     //this.child.openModalDialog();
-   // this.editView.openModalDialog();
+    // this.editView.openModalDialog();
   }
   momentInstance = moment();
-
-  
-  //   {
-  //     TaskId: 1,
-  //     ParentTaskId: 1,
-  //     ParentTask: 'Parent task 1',
-  //     EndDate: new Date('12/04/1996'),
-  //     Priority: 5,
-  //     StartDate: new Date('12/04/1996'),
-  //     Status: 'open',
-  //     Task: 'This is my sample task'
-  //   },
-  //   {
-  //     TaskId: 2,
-  //     ParentTaskId: 1,
-  //     ParentTask: 'parent task 2',
-  //     EndDate: new Date('12/04/1996'),
-  //     Priority: 6,
-  //     StartDate: new Date('11/04/1996'),
-  //     Status: 'open',
-  //     Task: 'This is my second task'
-  //   }
-  // ];
-  deleteEmployee(taskid) {
-    var taskList=this.tasks;
-    var filtered = this.tasks.filter(function(item,index) { 
-       
-      if(item.TaskId === taskid){
-        taskList.splice(index,1);
-      }  
-      return; 
-   });
-   // this.tasks.filter({TaskId:index});
+  deleteTask(task) {
+    this.taskService
+      .deleteTask(task.Task_ID)
+      .subscribe(
+        complete => {
+          this.fetchAllTasks();
+        });
   }
-  // closeResult: string;
 
-
-
-  // open(content) {
-  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-  //     this.closeResult = `Closed with: ${result}`;
-  //   }, (reason) => {
-  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //   });
-  // }
-
-  // private getDismissReason(reason: any): string {
-  //   if (reason === ModalDismissReasons.ESC) {
-  //     return 'by pressing ESC';
-  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //     return 'by clicking on a backdrop';
-  //   } else {
-  //     return  `with: ${reason}`;
-  //   }
-  // }
 }
+
+

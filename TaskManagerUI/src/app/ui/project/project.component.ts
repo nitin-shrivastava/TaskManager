@@ -22,6 +22,7 @@ export class ProjectComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
   }
+
   saveProjectDetails(form) {
     console.log(form.value);
     this.projectService.AddProject(form.value).subscribe(
@@ -31,6 +32,11 @@ export class ProjectComponent implements OnInit {
       },
       error => this.errorMessage = <any>error
     );
+    
 
   }
+  disabledDuration: Boolean = true;
+    changeCheck(event){
+      this.disabledDuration = !event.target.checked;
+    }
 }

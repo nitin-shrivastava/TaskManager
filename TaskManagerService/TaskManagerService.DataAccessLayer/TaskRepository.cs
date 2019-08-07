@@ -18,7 +18,7 @@ namespace TaskManagerService.DataAccessLayer
         {
             try
             {
-               var element= context.UserTasks.Where(x=>x.Task_ID==id).FirstOrDefault();
+               var element= context.UserTasks.Single(x=>x.Task_ID == id);
                 context.UserTasks.Remove(element);
                 context.SaveChanges();
                 return true;
@@ -67,6 +67,7 @@ namespace TaskManagerService.DataAccessLayer
                 {
                     var UTM = new UserTaskModel()
                     {
+                        Task_ID=taskItem.Task_ID,
                         ParentTask_ID = taskItem.ParentTask_ID,
                         ParentTaskDetail=taskList.Where(x=>x.ParentTask_ID == taskItem.Task_ID).Select(x=>x.TaskDetail).FirstOrDefault()??"No parent task",
                         TaskDetail = taskItem.TaskDetail,
@@ -94,6 +95,7 @@ namespace TaskManagerService.DataAccessLayer
 
             var UTM = new UserTaskModel()
             {
+                Task_ID = taskModel.Task_ID,
                 ParentTask_ID = taskModel.ParentTask_ID,
                 TaskDetail = taskModel.TaskDetail,
                 StartDate = taskModel.StartDate,
