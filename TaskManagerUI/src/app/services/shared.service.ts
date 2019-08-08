@@ -9,7 +9,7 @@ import { Task } from '../model/task';
   providedIn: 'root'
 })
 export class SharedService {
-  private hostUrl ='http://localhost:52240'; //'https://taskmanagerserviceapi20190703040240.azurewebsites.net';
+  private hostUrl = 'https://taskmanagerserviceapi20190703040240.azurewebsites.net'; //'http://localhost:52240';
  
   constructor(private http: HttpClient) { }
   getAllTasks(): Observable<ITask[]> {
