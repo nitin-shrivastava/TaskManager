@@ -14,7 +14,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
     this.fetchProjects();
   }
-  fetchProjects(){
+  fetchProjects() {
     this.projectService.getAllProjects().subscribe(
       projectList => {
         this.projects = projectList;
@@ -32,11 +32,30 @@ export class ProjectComponent implements OnInit {
       },
       error => this.errorMessage = <any>error
     );
-    
+
 
   }
   disabledDuration: Boolean = true;
-    changeCheck(event){
-      this.disabledDuration = !event.target.checked;
+  changeCheck(event) {
+    this.disabledDuration = !event.target.checked;
+  }
+  display = 'none';
+  openModal() {
+    this.display = 'block';
+  }
+  onCloseHandled() {
+    this.display = 'none';
+  }
+  Users: any[] = [{ id: 456788, name: 'Sachin' }, { id: 49888, name: 'Vikas' }];
+  selectedItem: any={id:'',name:''};
+  selectedmanager:string;
+  onSelect(manager): void {
+    this.selectedItem = manager;
+  }
+  onSelectedManager() {
+    if (this.selectedItem) {
+      this.selectedmanager=this.selectedItem.name;
+      this.display = 'none';
     }
+  }
 }
