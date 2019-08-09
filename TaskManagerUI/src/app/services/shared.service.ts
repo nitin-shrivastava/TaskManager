@@ -4,12 +4,14 @@ import { ITask } from '../model/ITask';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/operators';
 import { Task } from '../model/task';
+import {environment} from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
-  private hostUrl = 'https://taskmanagerserviceapi20190703040240.azurewebsites.net'; //'http://localhost:52240';
+  private hostUrl =  environment.serverUrl ; 
  
   constructor(private http: HttpClient) { }
   getAllTasks(): Observable<ITask[]> {
