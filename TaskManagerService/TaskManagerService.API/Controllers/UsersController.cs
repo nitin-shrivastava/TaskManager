@@ -43,5 +43,22 @@ namespace TaskManagerService.API.Controllers
                 throw ex;
             }
         }
+        [HttpGet]
+        [Route("api/users/delete/{id}")]
+        public HttpResponseMessage DeleteUserDetails(int id)
+        {
+            try
+            {
+                using (var user = new UserOperations())
+                {
+                    var abc = user.DeleteUserDetails(id);
+                    return Request.CreateResponse(HttpStatusCode.OK, abc);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

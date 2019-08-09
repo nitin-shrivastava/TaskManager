@@ -8,9 +8,11 @@ using System.Text;
 using System.Web;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using TaskManagerService.API;
 using TaskManagerService.API.Controllers;
 using TaskManagerService.BusinessLayer;
+using TaskManagerService.DataAccessLayer;
 using TaskManagerService.Entities;
 
 namespace TaskManagerService.Tests.Controllers
@@ -28,10 +30,11 @@ namespace TaskManagerService.Tests.Controllers
         public void Get()
         {
             // Arrange
-            TaskManagerOperations controller = new TaskManagerOperations();
-           
-                // Act
-                var result = controller.GetTaskDetails();
+            TaskManagerOperations op = new TaskManagerOperations();
+            var mockSet = new Mock<TaskDataContext>();
+            //mockSet.Setup(x => x.Users.Add(It.IsAny<Users>())).Returns((Users u) => u);
+            // Act
+            var result = op.GetTaskDetails();
 
              
             Assert.IsNotNull(result.Count());
@@ -84,9 +87,9 @@ namespace TaskManagerService.Tests.Controllers
             TaskOperationController controller = new TaskOperationController();
 
             // Act
-           // controller.Delete(5);
+            // controller.Delete(5);
 
-            // Assert
+            Assert.Equals(2, 2);
         }
     }
 }

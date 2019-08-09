@@ -10,6 +10,7 @@ import { UpdateComponent } from './ui/update/update.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectComponent } from './ui/project/project.component';
 import { UsersComponent } from './ui/users/users.component';
+import { FilterPipe } from './Filters/filter.pipe';
 
 
 
@@ -20,12 +21,14 @@ import { UsersComponent } from './ui/users/users.component';
     ViewComponent,
     UpdateComponent,
     ProjectComponent,
+    FilterPipe,
     UsersComponent    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,CommonModule,
     FormsModule,
+    
     RouterModule.forRoot([
     { path: 'project', component: ProjectComponent },
     { path: 'users', component: UsersComponent },

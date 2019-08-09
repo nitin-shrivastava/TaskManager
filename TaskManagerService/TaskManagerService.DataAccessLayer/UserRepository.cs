@@ -56,5 +56,21 @@ namespace TaskManagerService.DataAccessLayer
                 throw ex.InnerException;
             }
         }
+
+        public bool DeleteUserDetails(int userID)
+        {
+            try
+            {
+                var element = context.Users.Single(x => x.User_Id == userID);
+                context.Users.Remove(element);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex.InnerException;
+            }
+        }
     }
 }

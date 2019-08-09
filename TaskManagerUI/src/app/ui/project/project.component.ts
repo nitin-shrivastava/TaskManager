@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
+import { IUsers } from 'src/app/model/IUsers';
 
 @Component({
   selector: 'app-project',
@@ -10,7 +11,10 @@ export class ProjectComponent implements OnInit {
 
   constructor(private projectService: SharedService) { }
   projects: any[];
+  managerlist:IUsers[];
   errorMessage: string;
+  mgsearchText: string;
+
   ngOnInit() {
     this.fetchProjects();
   }
@@ -32,8 +36,6 @@ export class ProjectComponent implements OnInit {
       },
       error => this.errorMessage = <any>error
     );
-
-
   }
   disabledDuration: Boolean = true;
   changeCheck(event) {
@@ -42,11 +44,25 @@ export class ProjectComponent implements OnInit {
   display = 'none';
   openModal() {
     this.display = 'block';
+    this.fetchUsers();
+  }
+  fetchUsers() {
+    this.projectService.getAllUsers().subscribe(
+      UserList => {
+        this.managerlist = UserList;
+        this.Users=[];
+        UserList.filter(it=>{
+         
+          return this.Users.push({'name':it.FirstName + ' '+ it.LastName ,'id':it.Employee_Id});
+      });
+      },
+      error => this.errorMessage = <any>error
+    );
   }
   onCloseHandled() {
     this.display = 'none';
   }
-  Users: any[] = [{ id: 456788, name: 'Sachin' }, { id: 49888, name: 'Vikas' }];
+  Users: any[] = [{ id: '', name: '' }];
   selectedItem: any={id:'',name:''};
   selectedmanager:string;
   onSelect(manager): void {
@@ -57,5 +73,9 @@ export class ProjectComponent implements OnInit {
       this.selectedmanager=this.selectedItem.name;
       this.display = 'none';
     }
+  }
+  onReset(form)
+  {
+    form.reset();
   }
 }

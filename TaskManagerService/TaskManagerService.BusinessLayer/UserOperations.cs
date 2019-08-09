@@ -44,5 +44,20 @@ namespace TaskManagerService.BusinessLayer
                 throw ex;
             }
         }
+
+        public object DeleteUserDetails(int userID)
+        {
+            try
+            {
+                bool opCompleted;
+                var repository = new UserRepository();                
+                opCompleted = repository.DeleteUserDetails(userID);
+                return opCompleted;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
