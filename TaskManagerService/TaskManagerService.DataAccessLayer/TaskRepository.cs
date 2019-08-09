@@ -42,7 +42,7 @@ namespace TaskManagerService.DataAccessLayer
                 UserTask userTask = new UserTask();
                 userTask.ParentTask_ID = entity.ParentTask_ID;
                 userTask.Priority = entity.Priority;
-                userTask.Status = entity.Status;
+                userTask.Status = entity.Status??"Open";
                 userTask.Project_ID = entity.Project_ID;
                 userTask.TaskDetail = entity.TaskDetail;
                 userTask.StartDate = entity.StartDate;
