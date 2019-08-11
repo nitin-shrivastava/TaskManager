@@ -1,32 +1,32 @@
 <div class="pb-2 mt-4 mb-2 border-bottom">
-    <h3>Add Users</h3>      
+    <h3>Add Users</h3>
   </div>
 <form #userForm="ngForm" (ngSubmit)="addUserDetails(userForm)">
   <div class="form-group row">
     <label for="frstName" class="col-sm-2 col-form-label">First Name</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="frstName" placeholder="first name" name="firstname" ngModel required/>
+      <input type="text" class="form-control" id="frstName" placeholder="first name" name="firstname"  [(ngModel)]="firstName"  required/>
     </div>
   </div>
   <div class="form-group row">
     <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="lastName" placeholder="last name" name="lastname"  ngModel required/>
+      <input type="text" class="form-control" id="lastName" placeholder="last name" name="lastname"  [(ngModel)]="lastName" required/>
     </div>
   </div>
   <div class="form-group row">
     <label for="employeeid" class="col-sm-2 col-form-label">Employee ID</label>
 
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="employeeid" placeholder="employee ID" name="employee_id"  ngModel required>
+      <input type="text" class="form-control" id="employeeid" placeholder="employee ID" [disabled]='isDisabled' name="employee_id"  [(ngModel)]="employee_id" required>
     </div>
 
   </div>
   <div class="form-group row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8 text-right">
-      <button type="submit" class="btn btn-primary mr-2" [disabled]='!userForm.form.valid'>Add User</button>
-      <button type="button" class="btn btn-secondary" (click)="onReset(userForm)">Reset</button>
+      <button type="submit" class="btn btn-primary mr-2" [disabled]='!userForm.form.valid' id='btnadduser'>Add User</button>
+      <button type="button" class="btn btn-secondary" (click)="onReset(userForm)" >Reset</button>
     </div>
   </div>
 </form>
@@ -86,7 +86,7 @@
         <td>{{user.Employee_Id}}</td>
         <td>
             <div class="form-group">
-              <button class="btn btn-secondary btn-sm" >Edit</button> |
+              <button class="btn btn-secondary btn-sm" (click)=onUpdateUser(user)>Edit</button> |
               <button class="btn btn-danger btn-sm" (click)="deleteUserDetail(user.User_Id)">Delete</button>
             </div>
           </td>

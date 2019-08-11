@@ -13,8 +13,8 @@ import { IProject } from '../model/IProject';
   providedIn: 'root'
 })
 export class SharedService {
-  private hostUrl =  environment.serverUrl ; 
- 
+  private hostUrl =  environment.serverUrl ;
+
   constructor(private http: HttpClient) { }
   getAllTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.hostUrl+'/api/taskoperation')
@@ -31,6 +31,22 @@ export class SharedService {
         retry(1),
         catchError(this.handleError)
       );
+  }
+  deleteTask(id:number):Observable<ITask[]>{
+    return this.http.get<ITask[]>(this.hostUrl+"/api/taskoperation/delete"+'/'+id)
+    .pipe(
+      tap(data => console.log(JSON.stringify(data))),
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+  endTask(id:number):Observable<ITask[]>{
+    return this.http.get<ITask[]>(this.hostUrl+"/api/taskoperation/endtask"+'/'+id)
+    .pipe(
+      tap(data => console.log(JSON.stringify(data))),
+      retry(1),
+      catchError(this.handleError)
+    );
   }
   getAllProjects(): Observable<IProject[]> {
     return this.http.get<IProject[]>(this.hostUrl +'/api/project')//"http://localhost:52240/api/project"
@@ -95,12 +111,5 @@ export class SharedService {
         catchError(this.handleError)
       );
   }
-  deleteTask(id:number):Observable<ITask[]>{
-    return this.http.get<ITask[]>(this.hostUrl+"/api/taskoperation/delete"+'/'+id)
-    .pipe(
-      tap(data => console.log(JSON.stringify(data))),
-      retry(1),
-      catchError(this.handleError)
-    );
-  }
+
 }

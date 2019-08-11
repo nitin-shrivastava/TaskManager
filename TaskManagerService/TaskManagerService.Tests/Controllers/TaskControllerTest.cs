@@ -18,6 +18,7 @@ using TaskManagerService.Entities;
 namespace TaskManagerService.Tests.Controllers
 {
     [TestClass]
+    [TestCategory("Tasks")]
     public class TaskControllerTest
     {
         private void MockHttpContext()

@@ -43,6 +43,13 @@ namespace TaskManagerService.DataAccessLayer
             try
             {
                 Users user = new Users();
+                if (record.User_Id>0 && record.User_Id!=null)
+                {
+                    context.Users.Find(record.User_Id).FirstName = record.FirstName;
+                    context.Users.Find(record.User_Id).LastName = record.LastName;
+                    context.SaveChanges();
+                    return true;
+                }
                 user.FirstName = record.FirstName;
                 user.LastName = record.LastName;
                 user.Employee_Id = record.Employee_Id;                

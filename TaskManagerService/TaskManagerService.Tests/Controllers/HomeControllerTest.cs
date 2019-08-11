@@ -6,6 +6,7 @@ using TaskManagerService.API.Controllers;
 namespace TaskManagerService.Tests.Controllers
 {
     [TestClass]
+    [TestCategory("Home")]
     public class HomeControllerTest
     {
         [TestMethod]

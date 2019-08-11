@@ -64,5 +64,13 @@ namespace TaskManagerService.BusinessLayer
             opCompleted = repository.DeleteById(id);
             return opCompleted;
         }
+
+        public object EndTask(int id)
+        {
+            bool opCompleted;
+            var repository = new TaskRepository();
+            opCompleted = repository.EndTaskById(id);
+            return opCompleted;
+        }
     }
 }

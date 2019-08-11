@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
-
+import { Component, OnInit, Input, ViewChild, EventEmitter, Output, Inject } from '@angular/core';
 import { ITask } from 'src/app/model/ITask';
 import * as moment from 'moment';
 
 import { SharedService } from 'src/app/services/shared.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   templateUrl: './view.component.html',
@@ -11,10 +11,9 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class ViewComponent implements OnInit {
 
-  constructor(private taskService: SharedService) { }
+  constructor(private taskService: SharedService, @Inject(DOCUMENT) document, ) { }
   @Input() editView;
   tasks: ITask[];
-
   errorMessage: string;
   ngOnInit() {
 
@@ -41,6 +40,16 @@ export class ViewComponent implements OnInit {
       .subscribe(
         complete => {
           this.fetchAllTasks();
+        });
+  }
+ 
+  endTask(task) {
+    this.taskService
+      .endTask(task.Task_ID)
+      .subscribe(
+        complete => {
+          this.fetchAllTasks();
+
         });
   }
 

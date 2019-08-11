@@ -83,6 +83,17 @@ namespace TaskManagerService.API.Controllers
             var task = new TaskManagerOperations();
             var result = task.DeleteTask(id);
             return Request.CreateResponse(HttpStatusCode.OK, result);
+        } 
+        
+        // End task api/values/5
+        [HttpGet]
+        [Route("api/taskoperation/endtask/{id}")]
+        
+        public HttpResponseMessage EndTask(int id)
+        {
+            var task = new TaskManagerOperations();
+            var result = task.EndTask(id);
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
     }
 }

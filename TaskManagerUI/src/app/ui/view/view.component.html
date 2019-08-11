@@ -1,5 +1,5 @@
 <div class="pb-2 mt-4 mb-2 border-bottom">
-    <h1>View Tasks</h1>      
+    <h1>View Tasks</h1>
   </div>
 <form class="d-none">
   <div class="form-row form-inline ">
@@ -41,7 +41,7 @@
       <div class="form-group">
         <label for="startDate" class="col-sm-5 col-form-label">Start Date</label>
         <div class="col-sm-7">
-          <input type="date" class="col-md-12" id="startDate" placeholder="Start Date" />
+          <input type="date(dd-mm-yyyy)" class="col-md-12" id="startDate" placeholder="Start Date" />
 
         </div>
       </div>
@@ -50,7 +50,7 @@
       <div class="form-group">
         <label for="endDate" class="col-sm-5 col-form-label">End Date</label>
         <div class="col-sm-7 ">
-          <input type="date" class="col-md-12" id="endDate" placeholder="End Date" />
+          <input type="date(dd-mm-yyyy)" class="col-md-12" id="endDate" placeholder="End Date" />
         </div>
       </div>
     </div>
@@ -68,8 +68,8 @@
                 <input type="text" class="form-control" id="project_Name" placeholder="Project" />
             </div>
             <div class="col-md-3">
-               
-                <button class="btn btn-secondary btn-sm  mr-1" type="button" value="Start Date" >Search</button>
+
+                <button class="btn btn-info btn-sm  mr-1" type="button" name="searchproject" >Search</button>
             </div>
           </div>
         </div>
@@ -149,8 +149,8 @@
       <td>
         <div class="form-group">
           <button class="btn btn-secondary btn-sm" data-target="editModalForm"
-            [routerLink]="['/view', task.Task_ID]" >Edit</button> |
-          <button class="btn btn-secondary btn-sm">End Task</button> |
+            [routerLink]="['/view', task.Task_ID]" [disabled]='task.Status=="Closed"?true:false'>Edit</button> |
+          <button class="btn btn-secondary btn-sm" (click)='endTask(task)'>End Task</button> |
           <button class="btn btn-danger btn-sm" (click)='deleteTask(task)'>Delete</button>
         </div>
       </td>

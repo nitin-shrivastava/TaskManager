@@ -87,6 +87,23 @@ namespace TaskManagerService.DataAccessLayer
             }
         }
 
+        public bool EndTaskById(int id)
+        {
+            try
+            {
+                var element = context.UserTasks.Single(x => x.Task_ID == id);
+                context.UserTasks.Find(id).Status="Closed";
+               
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex.InnerException;
+            }
+        }
+
         public UserTaskModel GetTaskDetailsById(int id)
         {
             var taskModel = (from c in context.UserTasks

@@ -19,7 +19,7 @@ namespace TaskManagerService.PerformanceTest
         }
 
         // Perfectly valid counter setup
-        [PerfBenchmark(NumberOfIterations = 3, RunMode = RunMode.Throughput,
+        [PerfBenchmark(NumberOfIterations = 33, RunMode = RunMode.Throughput,
             RunTimeMilliseconds = 1000, TestMode = TestMode.Test)]
         [CounterThroughputAssertion("TestCounter", MustBe.GreaterThan, 10000000.0d)]
         [CounterTotalAssertion("TestCounter", MustBe.GreaterThan, 10000000.0d)]
