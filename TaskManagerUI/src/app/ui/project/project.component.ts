@@ -13,7 +13,8 @@ export class ProjectComponent implements OnInit {
   projects: any[];
   managerlist:IUsers[];
   errorMessage: string;
-  mgsearchText: string;
+  mgsearchText: string; 
+  project: string;
 
   ngOnInit() {
     this.fetchProjects();

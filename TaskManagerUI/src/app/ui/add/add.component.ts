@@ -20,6 +20,7 @@ export class AddComponent implements OnInit {
   selectedParentTask: any;
   selectedTaskName:any;
   taskdisplay='none';
+  taskSearch:string='';
   constructor(private addTaskService: SharedService) { }
 
   ngOnInit() {
