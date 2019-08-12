@@ -273,6 +273,10 @@
       <Project>{D2574D23-456A-4BD7-B9F3-616E661C5084}</Project>
       <Name>TaskManagerService.BusinessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TaskManagerService.DataAccessLayer\TaskManagerService.DataAccessLayer.csproj">
+      <Project>{537ADBC1-AB41-400C-BBF7-FD4FD1A9227C}</Project>
+      <Name>TaskManagerService.DataAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskManagerService.Entities\TaskManagerService.Entities.csproj">
       <Project>{B5FEB1B3-6CD7-4EB4-955B-19F2CDAA5652}</Project>
       <Name>TaskManagerService.Entities</Name>

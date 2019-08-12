@@ -10,9 +10,9 @@ namespace TaskManagerService.DataAccessLayer
     public class TaskRepository : IDisposable
     {
         TaskDataContext context;
-        public TaskRepository()
+        public TaskRepository(TaskDataContext _taskDBContext)
         {
-            context = new TaskDataContext();
+            this.context = _taskDBContext;
         }
         public bool DeleteById(int id)
         {

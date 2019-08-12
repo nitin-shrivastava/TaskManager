@@ -10,17 +10,29 @@ export class AddComponent implements OnInit {
   pageTitle: string = "Add Task";
   errorMessage: string = '';
   Projects: any[];
-  users: any[];
+  Users: any[];
   tasks: any[];
   selectedProject: any;
-  selectedTask:any;
+  selectedTask: any;
   item: any;
   projectSearch: string;
-  selectedUserName: string='';
+  selectedUserName: string = '';
   selectedParentTask: any;
-  selectedTaskName:any;
-  taskdisplay='none';
-  taskSearch:string='';
+  selectedTaskName: any;
+  taskdisplay = 'none';
+  taskSearch: string = '';
+  //User modal
+  userdisplay = 'none';
+  usersearchText: string = '';
+  onSelectUser(user) {
+    this.selectedItem = user;
+  }
+  onSelectedUserName() {
+    if (this.selectedItem) {
+      this.selectedUserName = this.selectedItem.FirstName + ' ' + this.selectedItem.LastName;
+      this.userdisplay = 'none';
+    }
+  }
   constructor(private addTaskService: SharedService) { }
 
   ngOnInit() {
@@ -28,6 +40,8 @@ export class AddComponent implements OnInit {
   }
   addNewTask(formData) {
     //formData.value[pr]
+    formData.value["Project_Id"]=this.selectedProject.Project_Id;
+    formData.value["ParentTask_ID"]=this.selectedTask.Task_ID;
     this.addTaskService.AddNewTask(formData.value).subscribe(
       task => { this.item = task },
       error => this.errorMessage = <any>error)
@@ -40,9 +54,10 @@ export class AddComponent implements OnInit {
   onCloseHandled() {
     this.display = 'none';
     this.taskdisplay = 'none';
+    this.userdisplay = 'none';
   }
 
-  selectedItem: any = { id: '', name: '' };
+  selectedItem: any;
   selectedProjectName: string;
   onSelect(proj): void {
     this.selectedProject = proj;
@@ -76,7 +91,7 @@ export class AddComponent implements OnInit {
     this.fetchAllTasks();
   }
   onSearchUserList() {
-    this.display = 'block';
+    this.userdisplay = 'block';
     this.fetchUsers();
   }
   fetchProjects() {
@@ -90,8 +105,7 @@ export class AddComponent implements OnInit {
   fetchUsers() {
     this.addTaskService.getAllUsers().subscribe(
       UserList => {
-        this.users = UserList;
-
+        this.Users = UserList;
       },
       error => this.errorMessage = <any>error
     );
@@ -100,7 +114,7 @@ export class AddComponent implements OnInit {
     this.addTaskService.getAllTasks().subscribe(
       tasks => {
         this.tasks = tasks;
-        this.display='block';
+        this.display = 'block';
       },
       error => this.errorMessage = <any>error
     );

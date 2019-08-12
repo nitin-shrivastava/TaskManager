@@ -10,9 +10,13 @@ namespace TaskManagerService.DataAccessLayer
     public class ProjectRepository
     {
         TaskDataContext context;
-        public ProjectRepository()
+        //public ProjectRepository()
+        //{
+        //    context = new TaskDataContext();
+        //}
+        public ProjectRepository(TaskDataContext _taskDBContext)
         {
-            context = new TaskDataContext();
+            this.context = _taskDBContext;
         }
 
         public List<ProjectModel> GetProjectDetails()
@@ -24,6 +28,7 @@ namespace TaskManagerService.DataAccessLayer
                 foreach (var project in projList)
                 {
                     var proj = new ProjectModel();
+                    proj.Project_Id = project.Project_Id;
                     proj.Project = project.Project;
                     proj.Priority = project.Priority;
                     proj.StartDate = project.StartDate;

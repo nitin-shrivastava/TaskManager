@@ -5,18 +5,24 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TaskManagerService.BusinessLayer;
+using TaskManagerService.DataAccessLayer;
 using TaskManagerService.Entities;
 
 namespace TaskManagerService.API.Controllers
 {
     public class UsersController : ApiController
     {
+        TaskDataContext _taskDataContext;
+        public UsersController()
+        {
+            this._taskDataContext = new TaskDataContext();
+        }
         [HttpPost]
         public HttpResponseMessage InsertUserDetails([FromBody]UsersModel record)
         {
             try
             {
-                using (var users = new UserOperations())
+                using (var users = new UserOperations(_taskDataContext))
                 {
                     var abc = users.InsertUserDetails(record);
                     return Request.CreateResponse(HttpStatusCode.OK, abc);
@@ -32,7 +38,7 @@ namespace TaskManagerService.API.Controllers
         {
             try
             {
-                using (var user = new UserOperations())
+                using (var user = new UserOperations(_taskDataContext))
                 {
                     var abc = user.GetUserDetails();
                     return Request.CreateResponse(HttpStatusCode.OK, abc);
@@ -49,7 +55,7 @@ namespace TaskManagerService.API.Controllers
         {
             try
             {
-                using (var user = new UserOperations())
+                using (var user = new UserOperations(_taskDataContext))
                 {
                     var abc = user.DeleteUserDetails(id);
                     return Request.CreateResponse(HttpStatusCode.OK, abc);

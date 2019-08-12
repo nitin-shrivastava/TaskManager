@@ -15,12 +15,17 @@ namespace TaskManagerService.BusinessLayer
             GC.SuppressFinalize(this);
         }
 
+        TaskDataContext _context;
+        public UserOperations(TaskDataContext taskDataContext)
+        {
+            this._context = taskDataContext;
+        }
         public object InsertUserDetails(UsersModel record)
         {
             try
             {
                 bool opCompleted;
-                var repository = new UserRepository();
+                var repository = new UserRepository(_context);
                 opCompleted = repository.Insert(record);
                 return opCompleted;
             }
@@ -35,7 +40,7 @@ namespace TaskManagerService.BusinessLayer
             try
             {
                 List<UsersModel> userdetails = null;
-                var repository = new UserRepository();
+                var repository = new UserRepository(_context);
                 userdetails = repository.GetUserDetails();
                 return userdetails;
             }
@@ -50,7 +55,7 @@ namespace TaskManagerService.BusinessLayer
             try
             {
                 bool opCompleted;
-                var repository = new UserRepository();                
+                var repository = new UserRepository(_context);                
                 opCompleted = repository.DeleteUserDetails(userID);
                 return opCompleted;
             }

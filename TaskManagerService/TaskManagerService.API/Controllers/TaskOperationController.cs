@@ -5,19 +5,24 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TaskManagerService.BusinessLayer;
+using TaskManagerService.DataAccessLayer;
 using TaskManagerService.Entities;
 
 namespace TaskManagerService.API.Controllers
 {
     public class TaskOperationController : ApiController, IDisposable
     {
-
+        TaskDataContext _taskDataContext;
+        public TaskOperationController()
+        {
+            this._taskDataContext = new TaskDataContext();
+        }
         // GET api/values
         public HttpResponseMessage GetTaskDetails()
         {
             try
             {
-                using (var task = new TaskManagerOperations())
+                using (var task = new TaskManagerOperations(_taskDataContext))
                 {
                     var abc = task.GetTaskDetails();
                     return Request.CreateResponse(HttpStatusCode.OK, abc);
@@ -36,7 +41,7 @@ namespace TaskManagerService.API.Controllers
         {
             try
             {
-                using (var task = new TaskManagerOperations())
+                using (var task = new TaskManagerOperations(_taskDataContext))
                 {
                     return task.GetTaskDetailsById(id);
                 }
@@ -52,7 +57,7 @@ namespace TaskManagerService.API.Controllers
         {
             try
             {
-                using (var task = new TaskManagerOperations())
+                using (var task = new TaskManagerOperations(_taskDataContext))
                 {
                    
                     var opSuccess = task.InsertTask(record);
@@ -80,7 +85,7 @@ namespace TaskManagerService.API.Controllers
         
         public HttpResponseMessage Delete(int id)
         {
-            var task = new TaskManagerOperations();
+            var task = new TaskManagerOperations(_taskDataContext);
             var result = task.DeleteTask(id);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         } 
@@ -91,7 +96,7 @@ namespace TaskManagerService.API.Controllers
         
         public HttpResponseMessage EndTask(int id)
         {
-            var task = new TaskManagerOperations();
+            var task = new TaskManagerOperations(_taskDataContext);
             var result = task.EndTask(id);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }

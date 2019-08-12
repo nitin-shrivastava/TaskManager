@@ -10,9 +10,9 @@ namespace TaskManagerService.DataAccessLayer
     public class UserRepository
     {
         TaskDataContext context;
-        public UserRepository()
+        public UserRepository(TaskDataContext _taskDBContext)
         {
-            context = new TaskDataContext();
+            this.context = _taskDBContext;
         }
         public List<UsersModel> GetUserDetails()
         {

@@ -31,7 +31,7 @@
     <label class="col-sm-2 col-form-label">Priority</label>
 
     <div class="col-sm-10">
-      <input type="range" class="custom-range" max="30" min="0" id="formControlRange" name="priority" ngModel required>
+      <input type="range" class="custom-range" max="30" min="0" id="formControlRange" name="priority" ngModel >
     </div>
 
   </div>
@@ -130,7 +130,7 @@
           <br />
           <div class="row">
             <ul class="list-group list-group-flush col-md-12">
-              <li *ngFor="let task of tasks | filter :'Task' : taskSearch"
+              <li *ngFor="let task of tasks | filter :'TaskDetail' : taskSearch"
                 class='list-group-item d-flex justify-content-between align-items-center'
                 [class.selected]="task === selectedTask" (click)="onTaskSelect(task)">
                 <span>{{task.TaskDetail}}</span><span class="d-none">{{task.Task_Id}}</span>
@@ -145,4 +145,38 @@
       </div>
     </div>
   </div>
+  <div  class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': userdisplay}">
+      <div class="modal-dialog modal-dialog-centered">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title">Users List</h6>
+            <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
+                aria-hidden="true">&times;</span></button>
+          </div>
+          <!-- model body section -->
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" id="searchuser" placeholder="Search User..." name="user" [(ngModel)]='usersearchText' required />
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                    <ul class="list-group list-group-flush col-md-12">
+                        <li *ngFor="let user of Users | filter : 'FirstName' : usersearchText" class='list-group-item d-flex justify-content-between align-items-center'
+                          [class.selected]="user === selectedItem"
+                          (click)="onSelectUser(user)">
+                          {{user.FirstName +' '+user.LastName }} <span class="d-none">{{user.User_Id}}</span>
+                        </li>
+                      </ul>
+                </div>               
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onCloseHandled()">Close</button>
+            <button type="button" class="btn btn-primary" (click)="onSelectedUserName()">Select</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>

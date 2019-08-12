@@ -15,12 +15,17 @@ namespace TaskManagerService.BusinessLayer
         {
             GC.SuppressFinalize(this);
         }
+        TaskDataContext _context;
+        public TaskManagerOperations(TaskDataContext taskDataContext)
+        {
+            this._context = taskDataContext;
+        }
         public List<UserTaskModel> GetTaskDetails()
         {
             try
             {
                 List<UserTaskModel> taskdetails = null;
-                var repository = new TaskRepository();
+                var repository = new TaskRepository(_context);
                 taskdetails = repository.GetTaskDetails();
                 return taskdetails;
             }
@@ -33,7 +38,7 @@ namespace TaskManagerService.BusinessLayer
         {
             try
             {
-                var repository = new TaskRepository();
+                var repository = new TaskRepository(_context);
                 return repository.GetTaskDetailsById(id);
             }
             catch (Exception ex)
@@ -47,7 +52,7 @@ namespace TaskManagerService.BusinessLayer
             try
             {
                 bool opCompleted;
-                var repository = new TaskRepository();
+                var repository = new TaskRepository(_context);
                 opCompleted = repository.Insert(taskEntity);
                 return opCompleted;
             }
@@ -60,7 +65,7 @@ namespace TaskManagerService.BusinessLayer
         public bool DeleteTask(int id)
         {
             bool opCompleted;
-            var repository = new TaskRepository();
+            var repository = new TaskRepository(_context);
             opCompleted = repository.DeleteById(id);
             return opCompleted;
         }
@@ -68,7 +73,7 @@ namespace TaskManagerService.BusinessLayer
         public object EndTask(int id)
         {
             bool opCompleted;
-            var repository = new TaskRepository();
+            var repository = new TaskRepository(_context);
             opCompleted = repository.EndTaskById(id);
             return opCompleted;
         }
